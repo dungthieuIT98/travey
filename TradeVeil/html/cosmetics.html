@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cosmetics Products - TradeVeil</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/cosmetics.css" />
+  <script src="../js/base-layout.js"></script>
+  <script src="../js/product-nav-layout.js"></script>
+</head>
+<body>
+<base-layout>
+</base-layout>
+<product-nav-layout current-page="cosmetics">
+        <div class="products-grid">
+            <div class="product-card" data-id="lipstick-classic" data-name="Classic Lipstick" data-price="599">
+                <img src="https://classicmakeupusa.com/wp-content/uploads/2018/05/Lady-Gaga.jpg" alt="Classic Lipstick" class="product-image" />
+                <div class="product-details">
+                    <h2 class="product-title">Classic Lipstick</h2>
+                    <p class="product-description">Long-lasting classic red lipstick for all occasions.</p>
+                    <p class="product-price">₹599</p>
+                    <button class="btn-buy" aria-label="Buy Classic Lipstick">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" data-id="foundation-smooth" data-name="Smooth Foundation" data-price="799">
+                <img src="https://m.media-amazon.com/images/I/61nRLuPq3VL.jpg" alt="Smooth Foundation" class="product-image" />
+                <div class="product-details">
+                    <h2 class="product-title">Smooth Foundation</h2>
+                    <p class="product-description">Lightweight foundation for a flawless finish.</p>
+                    <p class="product-price">₹799</p>
+                    <button class="btn-buy" aria-label="Buy Smooth Foundation">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" data-id="mascara-volume" data-name="Volume Mascara" data-price="699">
+                <img src="https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/000000000494474808/anhdsotAjIk-000000000494474808_1.jpg" alt="Volume Mascara" class="product-image" />
+                <div class="product-details">
+                    <h2 class="product-title">Volume Mascara</h2>
+                    <p class="product-description">Mascara that adds volume and length to your lashes.</p>
+                    <p class="product-price">₹699</p>
+                    <button class="btn-buy" aria-label="Buy Volume Mascara">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" data-id="nail-polish" data-name="Nail Polish" data-price="499">
+                <img src="https://bellavitaorganic.com/cdn/shop/files/1_66d33be6-b31b-4eff-b283-c33ef87951ee.jpg?v=1732617444" alt="Nail Polish" class="product-image" />
+                <div class="product-details">
+                    <h2 class="product-title">Nail Polish</h2>
+                    <p class="product-description">Durable nail polish available in multiple vibrant colors.</p>
+                    <p class="product-price">₹499</p>
+                    <button class="btn-buy" aria-label="Buy Nail Polish">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <section class="features-section">
+            <h2>Why Choose Our Cosmetics Products?</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <h3>Premium Quality</h3>
+                    <p>Our cosmetics are made with high-quality ingredients that are safe for your skin.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Long-lasting</h3>
+                    <p>Experience long-wearing formulas that stay fresh all day.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Affordable</h3>
+                    <p>Get the best value for your money with our competitive pricing.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Cruelty-Free</h3>
+                    <p>All our products are ethically made without animal testing.</p>
+                </div>
+            </div>
+        </section>
+</product-nav-layout>
+</body>
+</html>
+    </main>
+    <footer>
+        © 2025 TradeVeil. All rights reserved.
+    </footer>
+    <script>
+        const cartCountElem = document.getElementById('cart-count');
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartCount() {
+            cartCountElem.textContent = cart.length;
+        }
+
+        function addToCart(product) {
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(product.name + ' added to cart!');
+        }
+
+        document.querySelectorAll('.btn-buy').forEach(button => {
+            button.addEventListener('click', () => {
+                const productCard = button.closest('.product-card');
+                const product = {
+                    id: productCard.getAttribute('data-id'),
+                    name: productCard.getAttribute('data-name'),
+                    price: productCard.getAttribute('data-price')
+                };
+                addToCart(product);
+            });
+        });
+
+        updateCartCount();
+    </script>
+</base-layout>
+</body>
+</html>
