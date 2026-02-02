@@ -1,0 +1,15 @@
+{
+  "name": "tradeveil",
+  "version": "1.0.0",
+  "description": "TradeVeil E-commerce Website",
+  "scripts": {
+    "deploy": "git add . && git commit -m \"Auto deploy: $(date)\" && git push origin main",
+    "deploy:message": "git add . && git commit && git push origin main",
+    "status": "git status",
+    "pull": "git pull origin main",
+    "log": "git log --oneline -10"
+  },
+  "keywords": ["e-commerce", "tradeveil", "website"],
+  "author": "TradeVeil Team",
+  "license": "MIT"
+}

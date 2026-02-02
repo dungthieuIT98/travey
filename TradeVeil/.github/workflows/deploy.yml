@@ -1,0 +1,70 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Thiết lập permissions cho GitHub Actions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Chỉ cho phép một deployment chạy cùng lúc
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Build website
+        run: |
+          # Tạo thư mục build
+          mkdir -p _site
+          
+          # Copy tất cả files vào _site
+          cp -r * _site/ 2>/dev/null || true
+          
+          # Xóa các file không cần thiết
+          rm -rf _site/.git
+          rm -rf _site/.github
+          rm -f _site/deploy.ps1
+          rm -f _site/quick-deploy.ps1
+          rm -f _site/deploy.bat
+          rm -f _site/quick-deploy.bat
+          
+          # Tạo index.html từ html/index.html nếu cần
+          if [ ! -f "_site/index.html" ] && [ -f "_site/html/index.html" ]; then
+            cp _site/html/index.html _site/index.html
+          fi
+          
+          echo "✅ Build completed successfully!"
+          ls -la _site/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  # Deploy job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
