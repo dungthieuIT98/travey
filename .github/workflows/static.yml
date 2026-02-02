@@ -27,7 +27,7 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./html   # 👈 QUAN TRỌNG
+          path: ./TradeVeil/html   # 👈 đúng vị trí index.html
 
-      - uses: actions/deploy-pages@v4
-        id: deployment
+      - id: deployment
+        uses: actions/deploy-pages@v4
