@@ -25,9 +25,9 @@ TradeVeil/
 
 ## 🛠️ Cách deploy:
 
-### Method 1: Quick Deploy
+### Method 1: Quick Deploy (Khuyên dùng)
 ```bash
-# Sử dụng script có sẵn
+# Double-click file này để deploy nhanh
 quick-deploy.bat
 ```
 
@@ -63,6 +63,8 @@ Sau mỗi lần push lên main:
 - ⏳ **Building**: 1-2 phút
 - 🚀 **Deploying**: 30 giây
 - ✅ **Live**: Website được cập nhật
+
+**Cách đơn giản nhất:** Chỉ cần double-click `quick-deploy.bat` !
 
 ## 🐛 Troubleshooting:
 
